@@ -1,6 +1,5 @@
-package byteridge;
+package machineCoding;
 
-import java.awt.datatransfer.StringSelection;
 import java.util.*;
 
 public class Solution {

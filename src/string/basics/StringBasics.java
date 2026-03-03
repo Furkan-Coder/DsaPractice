@@ -7,7 +7,7 @@ public class StringBasics {
         String string = "Furkanu";
         String s2="kan";
         System.out.println(reverseString(string));
-        System.out.println(firstNonRepeatingChar(string));
+        System.out.println(firstNonRepeatingChar("First non repeating char = "+string));
         Map<Character,Integer>freq=freqCount(string);
         System.out.println(freq);
         System.out.println(removeDuplicate(string));
@@ -40,13 +40,17 @@ public class StringBasics {
     public static  Character firstNonRepeatingChar(String s){
         char ch[]=s.toCharArray();
         for(int i=0;i<s.length();i++){
-            for (int j=i+1;j<s.length();j++){
-                if(ch[j]!=ch[i]){
-                    return ch[i];
+            int count=0;
+            for (int j=0;j<s.length();j++){
+                if(ch[j]==ch[i]){
+                    count++;
                 }
             }
+            if(count==1){
+                return (s.charAt(i));
+            }
         }
-        return firstNonRepeatingChar(Arrays.toString(ch));
+        return '\0';
     }
 //        Count frequency of characters
     public static Map<Character, Integer> freqCount(String string){

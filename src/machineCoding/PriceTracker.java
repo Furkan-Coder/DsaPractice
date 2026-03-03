@@ -1,4 +1,4 @@
-package byteridge;
+package machineCoding;
 
 import java.util.Stack;
 

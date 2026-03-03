@@ -5,6 +5,7 @@ import java.util.*;
 public class ArrayBasics {
     public static void main(String[] args) {
         int arr[] = {4, 0, 7, 0, 9, 12, 0, 2, 4, 2, 6, 10};
+        int k=3;
 //        System.out.println(Arrays.toString(arr));
 //        int res1[] = findMax(arr);
 //        System.out.println(Arrays.toString(res1));
@@ -20,8 +21,8 @@ public class ArrayBasics {
 //        System.out.println(Arrays.toString(removeZeroAtTheEnd(res5)));
 
         System.out.println(Arrays.toString(arr));
-        int res6[]=rotateArray(arr);
-        System.out.println(Arrays.toString(rotateArray(res6)));
+        int res6[]=rotateArray(arr,k);
+        System.out.println(Arrays.toString(res6));
         int[] arr1={1,2,3,4,6,7,8};
         System.out.println(Arrays.toString(arr1));
         int res7=missingNumber(arr1);
@@ -85,7 +86,7 @@ public class ArrayBasics {
                 max2 = max1;
                 max1 = arr[i];
             }
-            if (arr[i] > max1 && arr[i] != max1) {
+            if (arr[i] > max2 && arr[i] != max1) {
                 max2 = arr[i];
             }
         }
@@ -129,14 +130,32 @@ public class ArrayBasics {
 
 
 //      8.  Rotate array by k steps (left/right)
-    public static int[] rotateArray(int arr[]){
-        for(int i=0; i<3;i++){
-            int i1=arr[0];
-            for(int j=0;j< arr.length-1;j++){
-               arr[j]=arr[j+1];
-            }
-            arr[arr.length-1]=i1;
+//    public static int[] rotateArray(int arr[]){
+//        for(int i=0; i<3;i++){
+//            int i1=arr[0];
+//            for(int j=0;j< arr.length-1;j++){
+//               arr[j]=arr[j+1];
+//            }
+//            arr[arr.length-1]=i1;
+//        }
+//        return arr;
+//    }
+
+    public static int[] reverse(int arr[],int start,int end){
+        while(start<end){
+            int temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            start++;
+            end--;
         }
+        return arr;
+    }
+    public static int[] rotateArray(int[] arr,int k){
+        reverse(arr,0,arr.length-1);
+        reverse(arr,0,arr.length-k-1);
+        reverse(arr,arr.length-k,arr.length-1);
+
         return arr;
     }
 
