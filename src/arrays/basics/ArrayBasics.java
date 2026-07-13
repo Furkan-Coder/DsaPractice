@@ -5,10 +5,12 @@ import java.util.*;
 public class ArrayBasics {
     public static void main(String[] args) {
         int arr[] = {4, 0, 7, 0, 9, 12, 0, 2, 4, 2, 6, 10};
-        int k=3;
+//        int k=3;
+//        int arr2[]={2,1,5,4,6,3,8};
+//        System.out.println(Arrays.toString(nextGreaterElement(arr2)));
 //        System.out.println(Arrays.toString(arr));
-//        int res1[] = findMax(arr);
-//        System.out.println(Arrays.toString(res1));
+        int res1[] = findMax(arr);
+        System.out.println(Arrays.toString(res1));
 //        int res2[] = reverseArrayInPlace(arr);
 //        System.out.println(Arrays.toString(res2));
 //        boolean res3 = sortedArray(arr);
@@ -19,16 +21,18 @@ public class ArrayBasics {
 //        System.out.println(removeDuplicate(arr));
 //        int[] res5 = removeZeroAtTheEnd(arr);
 //        System.out.println(Arrays.toString(removeZeroAtTheEnd(res5)));
+        int arr4[] = {6, 7, 8, 1, 2, 4, 5};
+        System.out.println(missingNumberInRotatedArray(arr4));
 
-        System.out.println(Arrays.toString(arr));
-        int res6[]=rotateArray(arr,k);
-        System.out.println(Arrays.toString(res6));
-        int[] arr1={1,2,3,4,6,7,8};
-        System.out.println(Arrays.toString(arr1));
-        int res7=missingNumber(arr1);
-        System.out.println(res7);
-        List<Integer>res8=missingNumbers(arr);
-        System.out.println(res8);
+//        System.out.println(Arrays.toString(arr));
+//        int res6[]=rotateArray(arr,k);
+//        System.out.println(Arrays.toString(res6));
+//        int[] arr1={1,2,3,4,6,7,8};
+//        System.out.println(Arrays.toString(arr1));
+//        int res7=missingNumber(arr1);
+//        System.out.println(res7);
+//        List<Integer>res8=missingNumbers(arr);
+//        System.out.println(res8);
 
     }
 
@@ -95,7 +99,7 @@ public class ArrayBasics {
 
     //      5.  Count frequency of each element
     public static Map<Integer, Integer> freqCount(int[] arr) {
-        Map<Integer, Integer> freq = new HashMap<>();
+        Map<Integer,Integer> freq = new HashMap<>();
         for (int num : arr) {
             freq.put(num, freq.getOrDefault(num, 0) + 1);
         }
@@ -103,8 +107,6 @@ public class ArrayBasics {
     }
 
 
-    //
-//
 //      6.  Remove duplicates from a sorted array
     public static Set<Integer> removeDuplicate(int arr[]) {
         Set<Integer> distinct = new HashSet<>();
@@ -116,16 +118,16 @@ public class ArrayBasics {
 
     //      7.  Move all zeros to the end
     public static int[] removeZeroAtTheEnd(int arr[]) {
-      int j=0;
-      for(int i=0;i<arr.length;i++){
-          if(arr[i]!=0){
-              int temp=arr[i];
-              arr[i]=arr[j];
-              arr[j]=temp;
-              j++;
-          }
-      }
-      return arr;
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                j++;
+            }
+        }
+        return arr;
     }
 
 
@@ -141,49 +143,86 @@ public class ArrayBasics {
 //        return arr;
 //    }
 
-    public static int[] reverse(int arr[],int start,int end){
-        while(start<end){
-            int temp=arr[start];
-            arr[start]=arr[end];
-            arr[end]=temp;
+    public static int[] reverse(int arr[], int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
             start++;
             end--;
         }
         return arr;
     }
-    public static int[] rotateArray(int[] arr,int k){
-        reverse(arr,0,arr.length-1);
-        reverse(arr,0,arr.length-k-1);
-        reverse(arr,arr.length-k,arr.length-1);
+
+    public static int[] rotateArray(int[] arr, int k) {
+        reverse(arr, 0, arr.length - 1);
+        reverse(arr, 0, arr.length - k - 1);
+        reverse(arr, arr.length - k, arr.length - 1);
 
         return arr;
     }
 
-//      9.  Find missing number in 1..n
-        public  static  int missingNumber(int arr1[]){
-        int n=arr1.length+1;
-        int sum=0;
-        int expectedSum=n*(n+1)/2;
-            System.out.println(expectedSum);
-        for(int i=0; i<arr1.length;i++){
-            sum=sum+arr1[i];
+    //      9.  Find missing number in 1..n
+    public static int missingNumber(int arr1[]) {
+        int n = arr1.length + 1;
+        int sum = 0;
+        int expectedSum = n * (n + 1) / 2;
+        System.out.println(expectedSum);
+        for (int i = 0; i < arr1.length; i++) {
+            sum = sum + arr1[i];
 
         }
-        return expectedSum-sum;
-        }
-//      10.  Find all missing numbers in a range
-    public static List<Integer>missingNumbers(int arr[]){
-        Set<Integer>set=new HashSet<>();
-        for(int num: arr){
+        return expectedSum - sum;
+    }
+
+    //      10.  Find all missing numbers in a range
+    public static List<Integer> missingNumbers(int arr[]) {
+        Set<Integer> set = new HashSet<>();
+        for (int num : arr) {
             set.add(num);
         }
-        List<Integer>missing=new ArrayList<>();
-        for(int i=0;i<arr.length;i++){
-            if(!set.contains(i)){
+        List<Integer> missing = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (!set.contains(i)) {
                 missing.add(i);
             }
         }
-        return  missing;
+        return missing;
     }
 
+    public static int[] nextGreaterElement(int[] arr) {
+        int result[] = new int[arr.length];
+        for (int i = 1; i <= arr.length; i++) {
+            int next = -1;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] > arr[i]) {
+                    next = arr[j];
+                    break;
+                }
+
+                result[i] = next;
+            }
+        }
+        return result;
+    }
+
+    //    Find the missing number in a rotated sorted array.
+    public static int missingNumberInRotatedArray(int arr[]) {
+        int n = arr.length;
+        int pivot = 0;
+        for (int i = 1; i < n; i++) {
+            if (arr[i] < arr[i - 1]) {
+                pivot = i;
+                break;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            int curr = arr[(pivot + i) % n];
+            int next = arr[(pivot + i + 1) % n];
+            if (next != curr + 1) {
+                return curr + 1;
+            }
+        }
+        return -1;
+    }
 }

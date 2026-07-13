@@ -12,11 +12,12 @@ public class Solution {
         System.out.println(longestSubStringWithK(string,k));
 
 //        System.out.println(minimumWindowSubString(string));
+        String str[]={"fly", "flower", "flight"};
+        System.out.println(longestCommonPrefix(str));
     }
 //  1.  Longest substring without repeating characters
     public  static  String subStringWithoutRepeatingCharacter(String string){
         Set<Character>set = new HashSet<>();
-        char ch[]=string.toCharArray();
         int left=0;
         int longest=0;
         int startIndex=0;
@@ -89,4 +90,17 @@ public class Solution {
 //
 //   10. Check if permutation of string exists in another
 
+//   11. Given an array of strings (for example: ["fly", "flower", "flight"]),
+//    write an algorithm to find the longest common prefix among all the strings.
+    public static  String longestCommonPrefix(String[]str){
+        Arrays.sort(str);
+        String first=str[0];
+        String last=str[str.length-1];
+        int i=0;
+        while(i<first.length()&& i<last.length() &&
+        first.charAt(i)==last.charAt(i)){
+            i++;
+        }
+        return first.substring(0,i);
+    }
 }

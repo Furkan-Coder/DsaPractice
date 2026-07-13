@@ -11,6 +11,7 @@ public class Solution {
         System.out.println(equilibriumIndex(arr));
         System.out.println(Arrays.toString(productOfArray(arr)));
         System.out.println(Arrays.toString(subArraysDivisibleByK(arr,k)));
+        System.out.println(maximumProductSubArray(arr));
     }
 //   1. Maximum subarray sum (Kadane’s)
     public static int maxSubArraySum(int arr[]){
@@ -28,6 +29,7 @@ public class Solution {
     }
 
 //   2. Subarray with given sum
+
 
 //   3. Count subarrays with sum = K
     public  static int countSumEqualToK(int arr[],int k){
@@ -70,7 +72,7 @@ public class Solution {
 
             int pro = 1;
             for (int j = 1; j < arr.length; j++) {
-                if (arr[i] != arr[j]) {
+                if (i != j) {
                     pro *= arr[j];
                 }
                 product[i] = pro;
@@ -96,6 +98,23 @@ public class Solution {
     }
 
 //   8. Maximum product subarray
+    public static int maximumProductSubArray(int arr[]){
+        int max=arr[0];
+        int min=arr[0];
+        int result=arr[0];
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]<0){
+                int temp=max;
+                max=min;
+                min=temp;
+            }
+            max=Math.max(arr[i],max*arr[i]);
+            min=Math.min(arr[i],min*arr[i]);
+            result=Math.max(result,max);
+        }
+        return result;
+
+    }
 
 //   9. Circular subarray sum
 

@@ -13,6 +13,7 @@ public class StringBasics {
         System.out.println(removeDuplicate(string));
         System.out.println(containsdigit(string));
         System.out.println(stringRotation(string,s2));
+        System.out.println(coutFreqWithInbuiltMethod(string));
     }
 //        🔹 Basic String Processing
 //        Reverse a string
@@ -88,7 +89,7 @@ public class StringBasics {
             }
 //        Check if string is rotation of another
         public static String stringRotation(String string, String s){
-        String s2=string+string;
+        String s2=string+s;
         if(s2.contains(s)){
             return "String is rotation of another";
         }
@@ -99,6 +100,24 @@ public class StringBasics {
 //
 //                Check if string is valid number
 
+//    Using only String inbuilt methods - count of the repeated character in a string
+        public static  Map<Character,Integer>coutFreqWithInbuiltMethod(String str){
+        Map<Character,Integer>map = new LinkedHashMap<>();
+        for (int i=0;i<str.length();i++){
+            char ch =str.charAt(i);
+            if(str.indexOf(ch)!=i){
+                continue;
+            }
+            int count=0;
+            for (int j=0;j<str.length();j++){
+                if(str.charAt(j)==ch){
+                    count++;
+                }
+            }
+            map.put(ch,count);
+        }
+        return map;
+        }
 //
 //
 

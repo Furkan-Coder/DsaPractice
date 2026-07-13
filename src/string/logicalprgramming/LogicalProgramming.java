@@ -13,7 +13,7 @@ public class LogicalProgramming {
         while (left<right){
             if(!Character.isLetter(ch[left])||!Character.isLetter(ch[right])){
                 left++;
-                right++;
+                right--;
                 continue;
             }
             char temp=ch[left];

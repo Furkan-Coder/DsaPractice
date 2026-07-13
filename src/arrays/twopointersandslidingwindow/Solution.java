@@ -8,6 +8,7 @@ public class Solution {
 
     public static void main(String[] args) {
         int arr[]={4,2,6,8,2,8,1,12};
+        System.out.println(containerWithMostWater(arr));
         int sum=1;
         int []res1=twoSum(arr,sum);
         System.out.println(Arrays.toString(res1));
@@ -76,9 +77,6 @@ public class Solution {
         }
         return res;
     }
-//    Container With Most Water
-//
-//
 //    Longest subarray with sum ≤ K
     public static int longestSubarray(int arr[],int target){
         int maxLen=0;
@@ -132,8 +130,23 @@ public class Solution {
     }
 
 //    Trapping Rain Water
-//
-//
+public static int containerWithMostWater(int height[]){
+    int left=0;
+    int right=height.length-1;
+    int maxArea=0;
+    while (left<right){
+        int h= Math.min(height[left],height[right]);
+        int width=(right-left);
+        int area=width*h;
+        maxArea=Math.max(area,maxArea);
+        if(height[left]<height[right]){
+            left++;
+        }else {
+            right--;
+        }
+    }
+    return maxArea;
+}
 //    Sort colors (Dutch National Flag)
 
 }
